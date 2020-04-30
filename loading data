@@ -1,0 +1,16 @@
+# set working diretory
+setwd("~/R_Coursera/Practical Machine Learning")
+# Download training dataset if it is not already in the directory 
+if (!file.exists("har.txt")) {
+      url <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"
+      download.file(url,"har.txt")
+      }
+# Download testing dataset if it is not already in the directory 
+if (!file.exists("har2.txt")) {
+      url2 <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv"
+      download.file(url2,"har2.txt")
+      }
+# Load datasets
+train <- read.csv("har.txt",sep = ",", header = TRUE,na.strings= c('#DIV/0', '', 'NA'))
+test <- read.csv("har2.txt",sep = ",", header = TRUE,na.strings= c('#DIV/0', '', 'NA'))
+                
