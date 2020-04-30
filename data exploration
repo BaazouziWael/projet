@@ -1,0 +1,14 @@
+# Check dataset dimensions
+dim(train)
+## [1] 19622   160
+dim(test)
+## [1]  20 160
+# check outcome(classe) distribution
+summary(train$classe)
+##    A    B    C    D    E 
+## 5580 3797 3422 3216 3607
+# check NA values
+sum(is.na(train))
+## [1] 1921600
+sum(is.na(test))
+## [1] 2000
