@@ -1,0 +1,17 @@
+# Set the seed for reproducibility
+set.seed(1234)
+# Load necessary libraries 
+library(caret)
+## Loading required package: lattice
+## Loading required package: ggplot2
+library(randomForest)
+## Warning: package 'randomForest' was built under R version 3.4.2
+## randomForest 4.6-12
+## Type rfNews() to see new features/changes/bug fixes.
+## 
+## Attaching package: 'randomForest'
+## The following object is masked from 'package:ggplot2':
+## 
+##     margin
+# Cross validation - 10 folds
+cv10 <- trainControl(method = "cv",allowParallel = TRUE, number = 10)
