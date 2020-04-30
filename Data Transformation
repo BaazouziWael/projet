@@ -1,0 +1,14 @@
+# Process training dataset
+# Discard columns with NA values and not correlated ones
+Nac <- sapply(1:160,function(n){sum(is.na(train[,n]))})
+cwithNA <- which(Nac>0)
+train <- train[,-cwithNA]
+train <- train[,-c(1:7)]
+# Process test dataset
+test <- test[,-cwithNA]
+test <- test[,-c(1:7)]
+# Check new datasets dimensions
+dim(train)
+## [1] 19622    53
+dim(test)
+## [1] 20 53
