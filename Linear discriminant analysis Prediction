@@ -1,0 +1,54 @@
+# fit Linear discriminant analysis (LDA) model
+# Start the clock!
+ptm <- proc.time()
+fitLda <- train(classe~.,data=train,method="lda",trcontorl=cv10)
+# Stop the clock
+(proc.time() - ptm)/60
+##      user    system   elapsed 
+## 0.1881667 0.0135000 0.2023333
+# Time spent(in minutes) to fit the model: 0.3 minute
+# user     system    elapsed 
+# 0.19666667 0.01416667 0.28716667 
+
+# Predicting with Linear discriminant analysis(LDA) model
+predLda <- predict(fitLda,train)
+table(predLda,train$classe)
+##        
+## predLda    A    B    C    D    E
+##       A 4568  586  341  191  133
+##       B  121 2429  333  130  611
+##       C  444  455 2254  379  323
+##       D  429  148  411 2383  344
+##       E   18  179   83  133 2196
+confusionMatrix(predLda,train$classe)
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction    A    B    C    D    E
+##          A 4568  586  341  191  133
+##          B  121 2429  333  130  611
+##          C  444  455 2254  379  323
+##          D  429  148  411 2383  344
+##          E   18  179   83  133 2196
+## 
+## Overall Statistics
+##                                           
+##                Accuracy : 0.7048          
+##                  95% CI : (0.6984, 0.7112)
+##     No Information Rate : 0.2844          
+##     P-Value [Acc > NIR] : < 2.2e-16       
+##                                           
+##                   Kappa : 0.6264          
+##  Mcnemar's Test P-Value : < 2.2e-16       
+## 
+## Statistics by Class:
+## 
+##                      Class: A Class: B Class: C Class: D Class: E
+## Sensitivity            0.8186   0.6397   0.6587   0.7410   0.6088
+## Specificity            0.9109   0.9245   0.9012   0.9188   0.9742
+## Pos Pred Value         0.7850   0.6703   0.5847   0.6415   0.8417
+## Neg Pred Value         0.9267   0.9145   0.9259   0.9476   0.9171
+## Prevalence             0.2844   0.1935   0.1744   0.1639   0.1838
+## Detection Rate         0.2328   0.1238   0.1149   0.1214   0.1119
+## Detection Prevalence   0.2966   0.1847   0.1965   0.1893   0.1330
+## Balanced Accuracy      0.8648   0.7821   0.7799   0.8299   0.7915
